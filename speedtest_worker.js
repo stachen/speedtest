@@ -606,11 +606,12 @@ function pingTest(done) {
 		xhr[0] = new XMLHttpRequest();
 		xhr[0].onload = function() {
 			// pong
-			tverb("pong");
 			if (i === 0) {
+                tverb("pong");
 				//prevT = new Date().getTime(); // first pong
 			} else {
 				var instspd = new Date().getTime() - prevT;
+                tverb("pong");
 				if (settings.ping_allowPerformanceApi) {
 					try {
 						//try to get accurate performance timing using performance api
