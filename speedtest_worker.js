@@ -608,7 +608,7 @@ function pingTest(done) {
 			// pong
 			tverb("pong");
 			if (i === 0) {
-				prevT = new Date().getTime(); // first pong
+				//prevT = new Date().getTime(); // first pong
 			} else {
 				var instspd = new Date().getTime() - prevT;
 				if (settings.ping_allowPerformanceApi) {
@@ -675,6 +675,7 @@ function pingTest(done) {
 			}
 		}.bind(this);
 		// send xhr
+		prevT = new Date().getTime(); 
 		xhr[0].open("GET", settings.url_ping + url_sep(settings.url_ping) + (settings.mpot ? "cors=true&" : "") + "r=" + Math.random(), true); // random string to prevent caching
 		xhr[0].send();
 	}.bind(this);
