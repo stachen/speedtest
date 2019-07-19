@@ -641,7 +641,7 @@ function pingTest(done) {
 			jitterStatus = jitter.toFixed(2);
 			i++;
 			tverb("ping: " + pingStatus + " jitter: " + jitterStatus);
-			if (i < settings.count_ping) doPing();
+			if (i < settings.count_ping) { doPing(); sleepFor(500);}
 			else {
 				// more pings to do?
 				pingProgress = 1;
@@ -661,7 +661,7 @@ function pingTest(done) {
 				pingProgress = 1;
 				done();
 			}
-			if (settings.xhr_ignoreErrors === 1) doPing(); //retry ping
+			if (settings.xhr_ignoreErrors === 1) {doPing(); sleepFor(500);}//retry ping
 			if (settings.xhr_ignoreErrors === 2) {
 				//ignore failed ping
 				i++;
@@ -679,7 +679,14 @@ function pingTest(done) {
 		xhr[0].send();
 	}.bind(this);
 	doPing(); // start first ping
+    sleepFor(500);
 }
+
+function sleepFor( sleepDuration ){
+    var now = new Date().getTime();
+    while(new Date().getTime() < now + sleepDuration){ /* do nothing */ } 
+}
+
 // telemetry
 function sendTelemetry(done) {
 	if (settings.telemetry_level < 1) return;
